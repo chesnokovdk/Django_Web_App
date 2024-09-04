@@ -1,0 +1,45 @@
+<!-- table>(thread>tr>th*5)(tbody>tr>td*5) -->
+{% extends 'base.html' %}
+
+{% block title %}All Courses{% endblock %}
+
+{% block this_is_my_content %}
+<table class="table mt-5 table-bordered table-striped table-hover">
+    <thread >
+        <tr class="table-dark">
+            <th>Title</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Students Quantity</th>
+            <th></th>
+        </tr>
+    </thread>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            {% comment %} {{courses}} {% endcomment %}
+            <td><a href={% url "shop:single_course" course.id %}>{{course.title}}</a></td>
+            {% comment %} <td><a href={% url "single_course" course.id %}>{{course.title}}</a></td> {% endcomment %}
+            {% comment %} <td><a href={{course.id}}>{{course.title}}</a></td> {% endcomment %}
+            {% comment %} ссылки по типу нижней лучше не использовать {% endcomment %}
+            {% comment %} <td><a href="/shop/{{course.id}}"">{{course.title}}</a></td> {% endcomment %}
+            <td>{{course.category}}</td>
+            <td>{{course.price}}</td>
+            <td>{{course.students_qty}}</td>
+            <td><button class="btn btn-primary">Buy</button></td>
+        </tr>
+        {% endfor %}
+        
+        {% comment %} <tr>
+            {{courses}}
+            <td>My Cource</td>
+            <td>Java</td>
+            <td>46.7</td>
+            <td>200</td>
+            <td><button>Buy</button></td>
+        </tr> 
+        {% endcomment %}
+    </tbody>
+</table>
+
+{% endblock %}
